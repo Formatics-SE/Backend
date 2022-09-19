@@ -1,44 +1,47 @@
 const express = require('express')
 const router = express.Router();
-
-const LecturerModel = require('./LecturerModel');
 const CourseModel = require('./CourseModel');
 
 router.post('/', express.json(), async (req, res) => {
-    const title = req.body.title;
-    const options = req.body.options;
+    const indexNumber = req.body.indexNumber;
     const courseCode = req.body.courseCode;
+    const optionId = req.body.optionId;
+    const pollId = req.body.pollId;
 
-    console.log('title: ', title)
-    console.log('options: ', options)
+    console.log('indexNumber: ', indexNumber)
     console.log('courseCode: ', courseCode)
+    console.log('optionId: ', optionId)
+
 
     try {
-        const newPoll = await CourseModel.updateOne(
-            {
-                courseCode: courseCode
-            },
-            {
-                $push: {
-                    polls: {
-                        title: title,
-                        options: options
-                    }
-                }
+        let poll; //yet to find how to access single poll from database
+        const pullPoll = await CourseModel.updateOne({ courseCode: courseCode }, {
+            $pull: {
+                polls: { _id: pollId }
             }
-        );
 
-        // if poll is created successfully...
-        if (newPoll) {
-            res.json({ successful: true });
+        });
+        const updatedCourseData = await CourseModel.updateOne({ courseCode: courseCode }, {
+            $push: {
+                polls: poll
+            },
+            new: true
+
+        });
+        if (updatedCourseData) {
+            res.json({ polls: updatedCourseData.polls })
         }
         else {
-            res.json({ successful: false });
-        }
+            res.json({ polls: null })
 
-    } catch (error) {
+        }
+    }
+    catch (error) {
         console.log(error.message);
     }
-});
 
+
+
+
+})
 module.exports = router;
