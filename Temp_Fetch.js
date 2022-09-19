@@ -18,7 +18,7 @@ async function create() {
 
         // const a = await CourseModel.deleteMany()
 
-        console.log(a);
+        console.log(a.polls[0].options[0]._id);
         
     } catch (error) {
         console.log(error.message);

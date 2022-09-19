@@ -11,10 +11,12 @@ router.post('/', express.json(), async (req, res) => {
     try {
         const courseData = await CourseModel.findOne({ courseCode: courseCode });
         let registeredStudents = courseData.registeredStudents;
-        let groups = courseData.groups;
+        let groups = courseData.groups; 
 
         groupsData.forEach(groupsObject => {
-            groupsData.push(groupsObjects);
+            groups.push(groupsObjects);
+            // the 'members' field is an array containing student name and index.
+            // Iterate over the array and for obj returned, find a match in the registered students array and update the group numbers.
             groupsObject.members.forEach(studentDetails => {
                 for (let i = 0; i < registeredStudents.length - 1; i++) {
                     if (studentDetails.indexNumber === registeredStudents[i].indexNumber) {
@@ -25,6 +27,7 @@ router.post('/', express.json(), async (req, res) => {
             })
         })
 
+        // apply the updates to the database 
         const update = await CourseModel.updateOne(
             { courseCode: courseCode },
             {

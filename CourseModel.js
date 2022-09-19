@@ -35,10 +35,12 @@ const CourseSchema = new mongoose.Schema({
         {
             title: String,
             totalVotesCast: { type: Number, default: 0 },
+            participants: [Number],
             options: [
                 {
                     option: String,
-                    votes: Number
+                    votes: Number,
+                    taken: [Number]
                 }
             ]
         }
