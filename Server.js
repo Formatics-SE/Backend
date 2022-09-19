@@ -28,6 +28,7 @@ const AttendanceFetchRouter = require('./AttendanceFetchRouter');
 const GroupsFetchLecturerRouter = require('./GroupsFetchLecturerRouter');
 const GroupsFetchStudentRouter = require('./GroupsFetchStudentRouter');
 const GroupsUpdateRouter = require('./GroupsUpdateRouter');
+const AddPollRouter = require('./AddPollRouter');
 
 // using routers
 app.use('/studentlogin', StudentLoginRouter);
@@ -44,6 +45,7 @@ app.use('/updateattendance', AttendanceUpdateRouter);
 app.use('/fetchlecturergroups', GroupsFetchLecturerRouter);
 app.use('/fetchstudentgroup', GroupsFetchStudentRouter);
 app.use('/updategroups', GroupsUpdateRouter);
+app.use('/updatepolls', PollsUpdateRouter);
 
 
 // assigning port
