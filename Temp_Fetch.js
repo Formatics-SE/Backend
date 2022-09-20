@@ -8,17 +8,14 @@ mongoose.connect('mongodb://localhost:27017/',
 () => console.log('connected to mongodb'));
 
 const  CourseModel = require('./CourseModel');
+const  StudentModel = require('./StudentModel');
 const  json = require('./Temp_RegStuds.json');
 
 async function create() {
     try {
-        const a = await CourseModel.findOne({
-           courseCode: 'COE 354'
-        });
+        const a = await CourseModel.deleteMany({});
 
-        // const a = await CourseModel.deleteMany()
-
-        console.log(a.polls[0].options[0]._id);
+        console.log(a);
         
     } catch (error) {
         console.log(error.message);

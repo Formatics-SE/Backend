@@ -20,8 +20,15 @@ router.post('/', express.json(), async (req, res) => {
         );
         // if a match is found...
         if (lecturerData) {
+            const assignedCourses = lecturerData.assignedCourses;
+            const username = lecturerData.username;
             // return an array of the courses assigned to the lecturer
-            res.json({ assignedCourses: lecturerData.assignedCourses });
+            res.json({
+                lecturerData: {
+                    assignedCourses: assignedCourses,
+                    username: username
+                }
+            });
         }
         else {
             res.json({ assignedCourses: null });

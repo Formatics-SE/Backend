@@ -10,7 +10,7 @@ router.post('/', express.json(), async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    console.log('in llogin')
+    console.log('in login')
 
     try {
         // query student by 'username' and 'password'
@@ -20,12 +20,11 @@ router.post('/', express.json(), async (req, res) => {
         });
         // if a match is found...
         if (studentData) {
-            // return the index number, which will be used as a key to obtain course data
-            // return array of registered courses
             res.json({
                 studentData:
                 {
                     indeNumber: studentData.indeNumber,
+                    username: studentData.username,
                     registeredCourses: studentData.registeredCourses
                 }
             });

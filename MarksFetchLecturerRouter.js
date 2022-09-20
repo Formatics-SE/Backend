@@ -6,6 +6,8 @@ const CourseModel = require('./CourseModel');
 router.post('/', express.json(), async (req, res) => {
     const courseCode = req.body.courseCode;
 
+    console.log('courseCode: ', courseCode)
+
     try {
         const courseData = await CourseModel.findOne({ courseCode: courseCode })
         if (courseData) {
@@ -18,7 +20,7 @@ router.post('/', express.json(), async (req, res) => {
             })
         }
         else {
-            res.json({ info: info })
+            res.json({ info: null })
         }
     } catch (error) {
         console.log(error.message)
