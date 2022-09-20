@@ -25,6 +25,8 @@ router.post('/', express.json(), async (req, res) => {
                 {
                     indeNumber: studentData.indeNumber,
                     username: studentData.username,
+                    year: studentData.year,
+                    semester: studentData.semester,
                     registeredCourses: studentData.registeredCourses
                 }
             });

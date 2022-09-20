@@ -23,34 +23,38 @@ async function create() {
                     {
                         courseName: 'Introduction to Software Engineering',
                         courseCode: 'COE 356',
-                        assignedLecturer: 'J. Yankey'
-
+                        assignedLecturer: 'J. Yankey',
+                        credits: 3
                     },
                     {
                         courseName: 'Operating Systems',
                         courseCode: 'COE 354',
-                        assignedLecturer: 'B. Kommey'
-
+                        assignedLecturer: 'B. Kommey',
+                        credits: 4
                     },
                     {
                         courseName: 'Embedded Systems',
                         courseCode: 'COE 358',
-                        assignedLecturer: 'B. Kommey'
+                        assignedLecturer: 'B. Kommey',
+                        credits: 3
                     },
                     {
                         courseName: 'Database and Information Retrieval',
                         courseCode: 'COE 368',
-                        assignedLecturer: 'E. Keelson'
+                        assignedLecturer: 'E. Keelson',
+                        credits: 3
                     },
                     {
                         courseName: "Digital Computer Design",
                         courseCode: 'COE 382',
-                        assignedLecturer: 'A.S Agbemenu'
+                        assignedLecturer: 'A.S Agbemenu',
+                        credits: 3
                     },
                     {
                         courseName: 'Autotronics Lab.',
                         courseCode: 'COE 392',
-                        assignedLecturer: ''
+                        assignedLecturer: '',
+                        credits: 2
                     }
                 ]
             })
