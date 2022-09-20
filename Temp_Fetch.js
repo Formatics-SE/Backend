@@ -9,11 +9,12 @@ mongoose.connect('mongodb://localhost:27017/',
 
 const  CourseModel = require('./CourseModel');
 const  StudentModel = require('./StudentModel');
+const  LecturerModel = require('./LecturerModel');
 const  json = require('./Temp_RegStuds.json');
 
 async function create() {
     try {
-        const a = await CourseModel.deleteMany({});
+        const a = await StudentModel.deleteMany({});
 
         console.log(a);
         

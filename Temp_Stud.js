@@ -44,9 +44,8 @@ async function create() {
                     },
                     {
                         courseName: "Digital Computer Design",
-                        courseName: 'COE 382',
+                        courseCode: 'COE 382',
                         assignedLecturer: 'A.S Agbemenu'
-
                     },
                     {
                         courseName: 'Autotronics Lab.',

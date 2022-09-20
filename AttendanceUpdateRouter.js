@@ -7,7 +7,7 @@ const CourseModel = require('./CourseModel')
 router.post('/', express.json(), async (req, res) => {
     const courseCode = req.body.courseCode;
     const attendanceData = req.body.attendanceData;
-
+    const maxAbsentStrikes = req.body.maxAbsentStrikes;
 
     try {
         const courseData = await CourseModel.findOne({ courseCode: courseCode });
@@ -26,19 +26,12 @@ router.post('/', express.json(), async (req, res) => {
         const update = await CourseModel.updateOne(
             { courseCode: courseCode },
             {
+                maxAbsentStrikes: maxAbsentStrikes,
                 $set: {
                     registeredStudents: registeredStudents
                 }
-            },
-            {
-                new: true
             }
         )
-
-        console.log(update)
-        // registeredStudents.forEach(s => {
-        //     console.log('att: ', s.attendance, 'strikes: ', s.strikes)
-        // })
 
         if (update) {
             res.json({ successful: true });
@@ -51,8 +44,7 @@ router.post('/', express.json(), async (req, res) => {
     catch (error) {
         console.log(error.message);
     }
-}
-);
+});
 
 module.exports = router;
 

@@ -17,11 +17,17 @@ async function create() {
             assignedCourses: [
                 {
                     courseName: 'Operating Systems',
-                    courseCode: 'COE 354'
+                    courseCode: 'COE 354',
+                    year: 3,
+                    semester: 2,
+                    credits: 4
                 },
                 {
                     courseName: 'Embedded Systems',
-                    courseCode: 'COE 358'
+                    courseCode: 'COE 358',
+                    year: 3,
+                    semester: 2,
+                    credits: 3
                 }
             ]
         });

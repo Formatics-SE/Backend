@@ -31,7 +31,7 @@ router.post('/', express.json(), async (req, res) => {
             });
         }
         else {
-            res.json({ assignedCourses: null });
+            res.json({ lecturerData: null });
         }
 
     } catch (error) {
