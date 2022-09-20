@@ -9,10 +9,6 @@ router.post('/', express.json(), async (req, res) => {
     const options = req.body.options;
     const courseCode = req.body.courseCode;
 
-    console.log('title: ', title)
-    console.log('options: ', options)
-    console.log('courseCode: ', courseCode)
-
     try {
         const newPoll = await CourseModel.updateOne(
             {

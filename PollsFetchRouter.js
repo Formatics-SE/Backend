@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router();
 
-
 //import Course Model
 const CourseModel = require('./CourseModel')
 //query courseData by course Code

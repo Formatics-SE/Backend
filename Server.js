@@ -28,7 +28,6 @@ const AttendanceFetchRouter = require('./AttendanceFetchRouter');
 const GroupsFetchLecturerRouter = require('./GroupsFetchLecturerRouter');
 const GroupsFetchStudentRouter = require('./GroupsFetchStudentRouter');
 const GroupsUpdateRouter = require('./GroupsUpdateRouter');
-const AddPollRouter = require('./AddPollRouter');
 
 const PollsFetchRouter = require('./PollsFetchRouter');
 const AddPollRouter = require('./AddPollRouter');
