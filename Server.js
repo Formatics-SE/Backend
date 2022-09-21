@@ -31,12 +31,13 @@ const GroupsUpdateRouter = require('./GroupsUpdateRouter');
 
 const PollsFetchRouter = require('./PollsFetchRouter');
 const AddPollRouter = require('./AddPollRouter');
+const DeletePollRouter = require('./DeletePollRouter');
 const PollsUpdateRouter = require('./PollsUpdateRouter');
 
 // using routers
 app.use('/studentlogin', StudentLoginRouter);
 app.use('/lecturerlogin', LecturerLoginRouter);
-app.use('/coursedata', CourseDataRouter);
+// app.use('/coursedata', CourseDataRouter);
 
 app.use('/updatemarks', MarksUpdateRouter);
 app.use('/fetchstudentmarks', MarksFetchStudentRouter);
@@ -48,10 +49,10 @@ app.use('/updateattendance', AttendanceUpdateRouter);
 app.use('/fetchlecturergroups', GroupsFetchLecturerRouter);
 app.use('/fetchstudentgroup', GroupsFetchStudentRouter);
 app.use('/updategroups', GroupsUpdateRouter);
-app.use('/updatepolls', PollsUpdateRouter);
 
 app.use('/fetchpolls', PollsFetchRouter);
 app.use('/addpoll', AddPollRouter);
+app.use('/deletepoll', DeletePollRouter);
 app.use('/updatepolls', PollsUpdateRouter);
 
 
