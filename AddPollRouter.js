@@ -10,7 +10,7 @@ router.post('/', express.json(), async (req, res) => {
     const courseCode = req.body.courseCode;
 
     try {
-        const newPoll = await CourseModel.updateOne(
+        const updateReport = await CourseModel.updateOne(
             {
                 courseCode: courseCode
             },
@@ -21,15 +21,20 @@ router.post('/', express.json(), async (req, res) => {
                         options: options
                     }
                 }
+            },
+            {
+                new: true
             }
         );
 
+        const courseData = await CourseModel.findOne({ courseCode: courseCode })
+
         // if poll is created successfully...
-        if (newPoll) {
-            res.json({ successful: true });
+        if (courseData) {
+            res.json({ polls: courseData.polls });
         }
         else {
-            res.json({ successful: false });
+            res.json({ polls: false });
         }
 
     } catch (error) {

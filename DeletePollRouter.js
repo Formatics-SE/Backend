@@ -1,12 +1,13 @@
 const express = require('express')
 const router = express.Router();
 
-const LecturerModel = require('./LecturerModel');
 const CourseModel = require('./CourseModel');
 
 router.post('/', express.json(), async (req, res) => {
-    const options = req.body.pollId;
+    const pollId = req.body.pollId;
     const courseCode = req.body.courseCode;
+
+    console.log('courseCode: ', courseCode)
 
     try {
         const newPoll = await CourseModel.updateOne(
@@ -19,8 +20,13 @@ router.post('/', express.json(), async (req, res) => {
                         _id: pollId
                     }
                 }
+            },
+            {
+                new: true
             }
         );
+
+        console.log(newPoll)
 
         // if poll is created successfully...
         if (newPoll) {
