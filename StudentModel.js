@@ -10,8 +10,7 @@ const StudentSchema = new mongoose.Schema({
         {
             courseName: String,
             courseCode: String,
-            group: Number,
-            assignedLecturer: String,
+            assignedLecturer: String, 
             credits: Number
         }
     ]

@@ -9,6 +9,7 @@ router.post('/', express.json(), async (req, res) => {
 
     try {
         const courseData = await CourseModel.findOne({ courseCode: courseCode })
+        console.log(courseData)
         const registeredStudents = courseData.registeredStudents;
 
         let matchedStudent;
@@ -20,7 +21,13 @@ router.post('/', express.json(), async (req, res) => {
 
         }
         if (matchedStudent) {
-            res.json({ marksArray: matchedStudent.marksArray })
+            res.json({ 
+                info: {
+                    courseCode: courseData.courseCode,
+                    courseName: courseData.courseName,
+                    marksArray: matchedStudent.marksArray
+                }
+             })
         }
         else {
             res.json({ marksArray: null })

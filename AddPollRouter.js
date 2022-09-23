@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router();
 
-const LecturerModel = require('./LecturerModel');
 const CourseModel = require('./CourseModel');
 
 router.post('/', express.json(), async (req, res) => {

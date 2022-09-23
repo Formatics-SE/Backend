@@ -12,10 +12,10 @@ router.post('/', express.json(), async (req, res) => {
         const courseData = await CourseModel.findOne({ courseCode: courseCode });
         let groups = courseData.groups;
         let groupMatch;
-        for (let i=0;i<groups.length -1;i++){
-            if(groupNumber===groups[i].number){
-              groupMatch=groups[i] 
-              break; 
+        for (let i = 0; i < groups.length; i++) {
+            if (groupNumber === groups[i].number) {
+                groupMatch = groups[i]
+                break;
             }
         }
         if (groupMatch) {

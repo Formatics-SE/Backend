@@ -13,48 +13,55 @@ app.use(cors({origin: '*'}));
 mongoose.connect('mongodb://127.0.0.1:27017', 
     () => console.log('connected to mongodb'));
 
-// importing routers
+// importing routers //
+// login routers
 const StudentLoginRouter = require('./StudentLoginRouter');
 const LecturerLoginRouter = require('./LecturerLoginRouter');
-const CourseDataRouter = require('./CourseDataRouter');
 
+// marks routers
 const MarksUpdateRouter = require('./MarksUpdateRouter');
 const MarksFetchStudentRouter = require('./MarksFetchStudentRouter');
 const MarksFetchLecturerRouter = require('./MarksFetchLecturerRouter');
 
+// attendance routers
 const AttendanceUpdateRouter = require('./AttendanceUpdateRouter');
 const AttendanceFetchRouter = require('./AttendanceFetchRouter');
 
+// groups routers
 const GroupsFetchLecturerRouter = require('./GroupsFetchLecturerRouter');
 const GroupsFetchStudentRouter = require('./GroupsFetchStudentRouter');
 const GroupsUpdateRouter = require('./GroupsUpdateRouter');
 
+// poll routers
 const PollsFetchRouter = require('./PollsFetchRouter');
 const AddPollRouter = require('./AddPollRouter');
 const DeletePollRouter = require('./DeletePollRouter');
 const PollsUpdateRouter = require('./PollsUpdateRouter');
 
-// using routers
+// using routers //
+// login routers
 app.use('/studentlogin', StudentLoginRouter);
 app.use('/lecturerlogin', LecturerLoginRouter);
-// app.use('/coursedata', CourseDataRouter);
 
+// marks routers
 app.use('/updatemarks', MarksUpdateRouter);
 app.use('/fetchstudentmarks', MarksFetchStudentRouter);
 app.use('/fetchlecturermarks', MarksFetchLecturerRouter);
 
+// attendance routers
 app.use('/fetchattendance', AttendanceFetchRouter);
 app.use('/updateattendance', AttendanceUpdateRouter);
 
+// group routers
 app.use('/fetchlecturergroups', GroupsFetchLecturerRouter);
 app.use('/fetchstudentgroup', GroupsFetchStudentRouter);
 app.use('/updategroups', GroupsUpdateRouter);
 
+// poll routers
 app.use('/fetchpolls', PollsFetchRouter);
 app.use('/addpoll', AddPollRouter);
 app.use('/deletepoll', DeletePollRouter);
 app.use('/updatepolls', PollsUpdateRouter);
-
 
 // assigning port
 app.listen(process.env.PORT, () => console.log('running on port 2022'));

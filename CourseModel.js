@@ -15,7 +15,7 @@ const CourseSchema = new mongoose.Schema({
             cwa: Number,
             attendance: { type: Number, default: 0 },
             strikes: { type: Number, default: 0 },
-            group: Number,
+            groupNumber: { type: Number, default: 0 },
             marksArray: [
                 {
                     marks: { type: Number, default: 0 },
@@ -26,7 +26,7 @@ const CourseSchema = new mongoose.Schema({
     ],
     groups: [
         {
-            number: Number,
+            groupNumber: Number,
             members: [{ name: String, indexNumber: Number }],
             score: { type: Number, default: 0 }
         }

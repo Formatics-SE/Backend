@@ -21,9 +21,8 @@ router.post('/', express.json(), async (req, res) => {
         // if a match is found...
         if (studentData) {
             res.json({
-                studentData:
-                {
-                    indeNumber: studentData.indeNumber,
+                studentData: {
+                    indexNumber: studentData.indexNumber,
                     username: studentData.username,
                     year: studentData.year,
                     semester: studentData.semester,

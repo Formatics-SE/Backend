@@ -16,6 +16,7 @@ router.post('/', express.json(), async (req, res) => {
                 info: {
                     courseName: courseData.courseName,
                     courseCode: courseData.courseCode,
+                    registeredStudents: courseData.registeredStudents,
                     groups: groups
                 }
             })
