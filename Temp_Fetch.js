@@ -14,7 +14,7 @@ const  json = require('./Temp_RegStuds.json');
 
 async function create() {
     try {
-        const a = await StudentModel.deleteMany({});
+        const a = await CourseModel.deleteMany({});
 
         console.log(a);
         

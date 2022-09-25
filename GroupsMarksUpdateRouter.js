@@ -7,42 +7,32 @@ router.post('/', express.json(), async (req, res) => {
     const courseCode = req.body.courseCode;
     const groupsData = req.body.groupsData;
 
+    // console.log(groupsData)
+
     try {
         const courseData = await CourseModel.findOne({ courseCode: courseCode });
-        let registeredStudents = courseData.registeredStudents;
         let groups = courseData.groups;
 
+        // update group score by finding a group number match with the data in groupsData
         groupsData.forEach(groupsObject => {
-            groups.push(groupsObject);
-            // the 'members' field is an array containing student name and index.
-            // Iterate over the array and for each obj returned, find a match in the registered students array and update the group number.
-            groupsObject.members.forEach(studentDetails => {
-                for (let i = 0; i < registeredStudents.length; i++) {
-                    if (studentDetails.indexNumber === registeredStudents[i].indexNumber) {
-                        console.log('gn: ', groupsObject.groupNumber)
-                        registeredStudents[i].groupNumber = groupsObject.groupNumber;
-                        break;
-                    }
+            for (let i = 0; i < groups.length; i++) {
+                if (groupsObject.groupNumber === groups[i].groupNumber) {
+                    groups[i].score += groupsObject.score;
+                    break;
                 }
-            })
+            }
         })
-
-        // console.log(registeredStudents)
 
         // apply the updates to the database 
         const updateReport = await CourseModel.updateOne(
             { courseCode: courseCode },
             {
                 $set: {
-                    registeredStudents: registeredStudents,
-                    groups: groupsData
+                    groups: groups
                 }
             },
             { new: true }
         )
-
-        console.log(updateReport)
-
 
         if (updateReport) {
             res.json({
@@ -54,7 +44,6 @@ router.post('/', express.json(), async (req, res) => {
                 }
             });
         }
-
         else {
             res.json({ successful: false });
         }

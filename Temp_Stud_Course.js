@@ -22,7 +22,7 @@ async function create() {
         });
         const b = await CourseModel({
             courseName: 'Operating Systems',
-            courseCode: 'COE 358',
+            courseCode: 'COE 354',
             assignedLecturer: 'B. Kommey',
             year: 3,
             semester: 2,
@@ -30,7 +30,7 @@ async function create() {
         });
         const c = await CourseModel({
             courseName: 'Embedded Systems',
-            courseCode: 'COE 354',
+            courseCode: 'COE 358',
             assignedLecturer: 'B. Kommey',
             year: 3,
             semester: 2,
@@ -70,7 +70,7 @@ async function create() {
 
         // const a = await CourseModel.deleteMany();
 
-        console.log(a);
+        // console.log(a);
 
     } catch (error) {
         console.log(error.message);
