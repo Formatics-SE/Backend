@@ -18,12 +18,13 @@ router.post('/', express.json(), async (req, res) => {
                 break;
             }
         }
+        console.log(groupMatch)
         if (groupMatch) {
             res.json({ group: groupMatch });
         }
 
         else {
-            res.json({ group: groupMatch });
+            res.json({ group: null });
         }
     }
     catch (error) {

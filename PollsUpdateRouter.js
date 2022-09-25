@@ -10,23 +10,26 @@ router.post('/', express.json(), async (req, res) => {
     const courseCode = req.body.courseCode;
     const optionId = req.body.optionId;
 
-
-    console.log('pollId: ', pollId)
-    console.log('indexNumber: ', indexNumber)
-    console.log('courseCode: ', courseCode)
-    console.log('optionId: ', optionId)
-
+    // console.log('pollId: ', pollId)
+    // console.log('indexNumber: ', indexNumber)
+    // console.log('courseCode: ', courseCode)
+    // console.log('optionId: ', optionId)
 
     try {
         const courseData = await CourseModel.findOne({ courseCode: courseCode });
         //return poll from course 
-        const poll = courseData.polls.find((pollobject) => { 
-            pollobject._id === pollId;
+        const poll = courseData.polls.find((pollObject) => {
+            if (pollObject._id == pollId) {
+                console.log('poll id: ', pollId, 'pollObj id: ', pollObject._id)
+                return true;
+            }
+            else return false;
         })
         poll.totalVotesCast++;
         poll.participants.push(indexNumber);
-        let pollOptionsUpdate = poll.options.map((option) => {
-            if (options._id == optionId) {
+        // console.log('poll ops: ', poll.options)
+        const pollOptionsUpdate = poll.options.map((option) => {
+            if (option._id == optionId) {
                 option.taken.push(indexNumber);
                 option.votes++;
                 return option;
@@ -35,8 +38,10 @@ router.post('/', express.json(), async (req, res) => {
                 return option;
             }
 
-        })
+        });
+
         poll.options = pollOptionsUpdate;
+
         const pullPoll = await CourseModel.updateOne({ courseCode: courseCode }, {
             $pull: {
                 polls: { _id: pollId }
@@ -46,16 +51,14 @@ router.post('/', express.json(), async (req, res) => {
         const updatedCourseData = await CourseModel.updateOne({ courseCode: courseCode }, {
             $push: {
                 polls: poll
-            },
-            new: true
-
+            }
         });
+
         if (updatedCourseData) {
-            res.json({ polls: updatedCourseData.polls })
+            res.json({ successful: true })
         }
         else {
-            res.json({ polls: null })
-
+            res.json({ successful: false })
         }
     }
     catch (error) {

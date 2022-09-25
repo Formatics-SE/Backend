@@ -1,12 +1,12 @@
 const express = require('express')
 const router = express.Router();
 
-//import Course Model
 const CourseModel = require('./CourseModel')
-//query courseData by course Code
+
 router.post('/', express.json(), async (req, res) => {
     const courseCode = req.body.courseCode;
     const courseData = await CourseModel.findOne({ courseCode: courseCode });
+    console.log(courseData.polls)
     try {
         if (courseData) {
             res.json({

@@ -14,13 +14,15 @@ router.post('/', express.json(), async (req, res) => {
         let date = new Date().toLocaleDateString();
 
         marksData.forEach(marksObject => {
-            for (let i = 0; i < registeredStudents.length; i++) {
-                if (marksObject.indexNumber === registeredStudents[i].indexNumber) {
-                    registeredStudents[i].marksArray.push({
-                        marks: marksObject.currentDayMarks,
-                        date: date
-                    })
-                    break;
+            if (marksObject.currentDayMarks != 0) {
+                for (let i = 0; i < registeredStudents.length; i++) {
+                    if (marksObject.indexNumber === registeredStudents[i].indexNumber) {
+                        registeredStudents[i].marksArray.push({
+                            marks: marksObject.currentDayMarks,
+                            date: date
+                        })
+                        break;
+                    }
                 }
             }
         });
