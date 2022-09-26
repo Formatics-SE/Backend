@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router();
 
-//importing course Model
 const CourseModel = require('./CourseModel')
 
 router.post('/', express.json(), async (req, res) => {
@@ -10,7 +9,6 @@ router.post('/', express.json(), async (req, res) => {
     try {
         const courseData = await CourseModel.findOne({ courseCode: courseCode });
         let groups = courseData.groups;
-        console.log('groups: ', groups)
 
         if (groups) {
             res.json({

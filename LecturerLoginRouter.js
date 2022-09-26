@@ -5,7 +5,7 @@ const LecturerModel = require('./LecturerModel');
 const CourseModel = require('./CourseModel');
 
 router.post('/', express.json(), async (req, res) => {
-    const username = req.body.username;
+    const username = req.body.username.toLowerCase();
     const password = req.body.password;
     const staff_id = req.body.staff_id;
 

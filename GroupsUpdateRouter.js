@@ -27,8 +27,6 @@ router.post('/', express.json(), async (req, res) => {
             })
         })
 
-        // console.log(registeredStudents)
-
         // apply the updates to the database 
         const updateReport = await CourseModel.updateOne(
             { courseCode: courseCode },
@@ -40,9 +38,6 @@ router.post('/', express.json(), async (req, res) => {
             },
             { new: true }
         )
-
-        console.log(updateReport)
-
 
         if (updateReport) {
             res.json({

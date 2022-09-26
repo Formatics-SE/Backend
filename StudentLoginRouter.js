@@ -7,7 +7,7 @@ const StudentModel = require('./StudentModel');
 // handles requests made to /studentlogin
 router.post('/', express.json(), async (req, res) => {
     // get login credentials
-    const username = req.body.username;
+    const username = req.body.username.toLowerCase();
     const password = req.body.password;
 
     console.log('in login')

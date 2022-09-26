@@ -6,7 +6,6 @@ const CourseModel = require('./CourseModel');
 router.post('/', express.json(), async (req, res) => {
     const courseCode = req.body.courseCode;
     const marksData = req.body.marksData;
-    // console.log('marksData: ', marksData)
 
     try {
         const courseData = await CourseModel.findOne({ courseCode: courseCode })
@@ -17,19 +16,39 @@ router.post('/', express.json(), async (req, res) => {
             if (marksObject.currentDayMarks != 0) {
                 for (let i = 0; i < registeredStudents.length; i++) {
                     if (marksObject.indexNumber === registeredStudents[i].indexNumber) {
-                        registeredStudents[i].marksArray.push({
-                            marks: marksObject.currentDayMarks,
-                            date: date
-                        })
-                        break;
+                        let push = true;
+                        for (let j = 0; j < registeredStudents[i].marksArray.length; j++) {
+                            if (registeredStudents[i].marksArray[j]?.date == date) {
+                                registeredStudents[i].marksArray[j].marks += marksObject.currentDayMarks;
+                                push = false;
+                            }
+                            break;
+                        }
+                        if (push) {
+                            registeredStudents[i].marksArray.push({
+                                marks: marksObject.currentDayMarks,
+                                date: date
+                            })
+                        }
                     }
                 }
             }
         });
 
-        // registeredStudents.forEach(s => 
-        //     console.log('marskArray: ', s.marksArray)
-        // )
+        // marksData.forEach(marksObject => {
+        //     if (marksObject.currentDayMarks != 0) {
+        //         for (let i = 0; i < registeredStudents.length; i++) {
+        //             if (marksObject.indexNumber === registeredStudents[i].indexNumber) {
+        //                 registeredStudents[i].marksArray.push({
+        //                     marks: marksObject.currentDayMarks,
+        //                     date: date
+        //                 })
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // });
+
         const update = await CourseModel.updateOne(
             { courseCode: courseCode },
             {

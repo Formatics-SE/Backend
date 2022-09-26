@@ -7,8 +7,6 @@ router.post('/', express.json(), async (req, res) => {
     const courseCode = req.body.courseCode;
     const groupsData = req.body.groupsData;
 
-    // console.log(groupsData)
-
     try {
         const courseData = await CourseModel.findOne({ courseCode: courseCode });
         let groups = courseData.groups;
