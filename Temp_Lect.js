@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-
-mongoose.connect('mongodb://localhost:27017/',
-    () => console.log('connected to mongodb'));
-
 const LecturerModel = require('./LecturerModel');
+
+mongoose.connect('mongodb+srv://john_doe:formatics@poll-cluster.pofnv.mongodb.net/claim-app-db?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}, () => console.log('connected to mongodb'));
+
 async function create() {
     try {
         const a = await LecturerModel({
@@ -33,8 +35,6 @@ async function create() {
         });
         await a.save();
 
-        // const a = await LecturerModel.deleteMany();
-        
         console.log(a);
 
     } catch (error) {
