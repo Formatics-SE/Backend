@@ -68,4 +68,4 @@ app.use('/deletepoll', DeletePollRouter);
 app.use('/updatepolls', PollsUpdateRouter);
 
 // assigning port
-app.listen(process.env.PORT, () => console.log('running on port 2022'));
+app.listen(process.env.PORT || 2022, () => console.log('running on port 2022'));
