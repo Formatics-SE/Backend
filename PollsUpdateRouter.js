@@ -10,10 +10,7 @@ router.post('/', express.json(), async (req, res) => {
     const courseCode = req.body.courseCode;
     const optionId = req.body.optionId;
 
-    // console.log('pollId: ', pollId)
-    // console.log('indexNumber: ', indexNumber)
-    // console.log('courseCode: ', courseCode)
-    // console.log('optionId: ', optionId)
+    console.log('poll update')
 
     try {
         const courseData = await CourseModel.findOne({ courseCode: courseCode });
@@ -37,7 +34,6 @@ router.post('/', express.json(), async (req, res) => {
             else {
                 return option;
             }
-
         });
 
         poll.options = pollOptionsUpdate;
@@ -51,11 +47,18 @@ router.post('/', express.json(), async (req, res) => {
         const updatedCourseData = await CourseModel.updateOne({ courseCode: courseCode }, {
             $push: {
                 polls: poll
-            }
+            },
+            new: true
         });
 
         if (updatedCourseData) {
-            res.json({ successful: true })
+            res.json({
+                info: {
+                    courseCode: courseData.courseCode,
+                    courseName: courseData.courseName,
+                    polls: courseData.polls
+                }
+            })
         }
         else {
             res.json({ successful: false })
