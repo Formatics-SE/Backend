@@ -10,12 +10,12 @@ const app = express();
 app.use(cors({origin: '*'}));
 
 // connect to local mongodb database
-mongoose.connect('mongodb+srv://john_doe:formatics@poll-cluster.pofnv.mongodb.net/claim-app-db?retryWrites=true&w=majority', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}, () => console.log('connected to mongodb'));
+// mongoose.connect('mongodb+srv://john_doe:formatics@poll-cluster.pofnv.mongodb.net/claim-app-db?retryWrites=true&w=majority', {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// }, () => console.log('connected to mongodb'));
 
-// mongoose.connect('mongodb://127.0.0.1:27017', () => console.log('connected to mongodb'));
+mongoose.connect('mongodb://127.0.0.1:27017', () => console.log('connected to mongodb'));
 
 // importing routers //
 // login routers
